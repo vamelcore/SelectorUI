@@ -1,0 +1,74 @@
+WARNING!!! +++++++++++++++++++++++++++++++++++++++++++
+
+THIS IS ALPHA VERSION WITH MySQL injection EVERYWHERE
+
+REQUIREMENTS: ++++++++++++++++++++++++++++++++++++++++
+
+1) Asterisk PBX (fully tested on 1.6.3.22) with MeetMe
+   I prefer Elastix distro
+2) MySQL 5.0
+3) PHP 5.1 or higher
+4) Apache2
+5) Web Browser ( Opera, Firefox, Chrome, Safari ... )
+
+INSTALLATION STEPS: +++++++++++++++++++++++++++++++++
+
+1) untar selector.tar.gz into your 'htdocs' folder:
+    
+    # tar -xvzf selector.tar.gz
+
+2) add new AsManager user into /etc/asterisk/manager.conf
+    
+    [selector]
+    secret = selector
+    read = call
+    write = command,originate
+   
+   don`t foreget to restart Asterisk(r)
+
+    # asterisk -r
+    asterisk-cli> core reload now
+    
+3) Secure selector folder (standart login:    admin, 
+				    password: admin )
+   !!! don`t miss this step:
+    				    
+    //---httpd.conf----
+    <Directory /path/to/your/selector>
+	AuthType Digest
+	AuthName "Selector"
+	AuthDigestProvider file
+	AuthUserFile /path/to/your/selector/include/passwd
+	Require valid-user
+    </Directory>
+    
+    //---don`t-foreget-to-restart-httpd:
+    
+    # apachectl restart
+
+4) Add new user 'selector' into MySQL, and make table 'invite':
+    
+//---change password in first string of 'include/cbmysql/mysql.txt'
+//---"IDENTIFIED BY 'password'"
+
+    # mysql < include/cbmysql/mysql.txt -u root -p
+    
+5) Create a symlink to your 'meetme.conf' for PIN prompting
+   and to '/var/spool/asterisk/outgoing' to make invitation:
+   
+    # ln -s /etc/asterisk/meetme.conf /path/to/selector/include/meetme.conf
+    # ln -s /var/spool/asterisk/outgoing /path/to/selector/include/outgoing
+    
+6) Change settings in 'include/settings.php'.
+
+7) If you need to autoclear meetme audio records weekly:
+
+    # crontab include/cron.job
+
+8) Enjoy.
+
+Dissallow access to 
+'records', 'include/call', 'include/calltemp' folders
+because of security reasons.
+   
+form Russia with love.. KoD.

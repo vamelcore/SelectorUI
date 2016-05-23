@@ -1,0 +1,8 @@
+Channel: SIP/terratel/598
+CallerID: 7199-adminConf<usr598>
+Extension: 7199
+WaitTime: 30
+MaxRetries: 3
+RetryTime: 60
+Archive: yes
+Set: MEETME_RECORDINGFORMAT=wav

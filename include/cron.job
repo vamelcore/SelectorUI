@@ -1,0 +1,5 @@
+0-59 * * * * ln -s /var/lib/asterisk/sounds/meetme-conf-rec* /var/www/html/selector/records/
+
+# If you want to delete meetme records every week uncomment this
+0 0 * * 0 rm /var/lib/asterisk/sounds/meetme-conf-rec* 
+0 0 * * 0 rm /var/www/html/selector/records/*

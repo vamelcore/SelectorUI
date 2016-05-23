@@ -1,0 +1,10 @@
+CREATE TABLE `meetme`.`invite` (
+`usr_n` INT NOT NULL AUTO_INCREMENT PRIMARY KEY ,
+`grp_n` INT NOT NULL ,
+`grp_name` TEXT NOT NULL ,
+`usr_name` TEXT NOT NULL ,
+`grp_owner` TEXT NOT NULL ,
+`phn` TEXT NOT NULL ,
+`email` TEXT NOT NULL ,
+`comment` TEXT NOT NULL 
+);
