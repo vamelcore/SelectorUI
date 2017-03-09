@@ -7,7 +7,7 @@ Released for free under a Creative Commons Attribution 2.5 License
 Name       : Simple Passage
 Description: A three-column, fixed-width blog design.
 Version    : 1.0
-Released   : 20090327
+Released   : 20090328
 -->
 <?php
 require_once('include/settings.php');
